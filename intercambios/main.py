@@ -64,7 +64,7 @@ def main(path_prg: Annotated[str, typer.Argument(help="Path to the PRG folder")]
     ) as progress:
         progress.add_task("Processing data...", total=None)
         data_processor = DataProcessor(data_extractor)
-        data_processor.process_prorrata()
+        data_processor.process_intercambios()
 
     with Progress(
         SpinnerColumn(),
@@ -81,6 +81,3 @@ def main(path_prg: Annotated[str, typer.Argument(help="Path to the PRG folder")]
     console.print(table)
 
     # TODO: add results with graphs
-
-if __name__ == "__main__":
-    main(path_prg=r"C:\Users\felipe.bastidas\PyProyectos\prg_20240128\Datos\Model PRGdia_Full_Definitivo Solution")

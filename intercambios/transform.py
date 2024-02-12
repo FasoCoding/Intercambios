@@ -29,7 +29,7 @@ class DataProcessor:
         self.min_date = data_extractor.cmg.select("datetime").min().item()
         self.max_date = data_extractor.cmg.select("datetime").max().item()
     
-    def process_prorrata(self):
+    def process_intercambios(self):
         self.curt_data = _process_intercambios(self.data, self.topo, self.min_date, self.max_date)
     
     def show_results(self) -> pl.DataFrame:
