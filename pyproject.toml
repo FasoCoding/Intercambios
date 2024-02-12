@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "intercambios"
+version = "0.1.0"
+description = ""
+authors = ["FasoCoding <bastidas.felipe@google.com>"]
+readme = "README.md"
+
+[tool.poetry.scripts]
+intercambios = "intercambios.main:app"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+sqlalchemy-access = "^2.0.2"
+networkx = "^3.2.1"
+pandas = "^2.2.0"
+openpyxl = "^3.1.2"
+pyarrow = "^15.0.0"
+polars = "^0.20.7"
+xlsx2csv = "^0.8.2"
+typer = "^0.9.0"
+rich = "^13.7.0"
+ipykernel = "^6.29.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
