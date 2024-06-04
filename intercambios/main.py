@@ -54,28 +54,28 @@ def main(path_prg: Annotated[str, typer.Argument(help="Path to the PRG folder")]
         SpinnerColumn(),
         TextColumn("[progress.description]{task.description}"),
     ) as progress:
-        progress.add_task("Extracting data...", total=None)
+        task_extract = progress.add_task("Extracting data...", total=None)
         data_extractor = DataExtractor(path_prg.joinpath(PATH_ACCDB_INPUT), path_prg.joinpath(TOPOLOGY_PATH))
         data_extractor.extract_data()
+        progress.print("listo! datos extraidos :smiley: ...", style="bold cyan")
+        progress.remove_task(task_extract)
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-    ) as progress:
-        progress.add_task("Processing data...", total=None)
+        task_data = progress.add_task("Processing data...", total=None)
         data_processor = DataProcessor(data_extractor)
         data_processor.process_intercambios()
+        progress.print("listo! datos procesados :smiley: ...", style="bold cyan")
+        progress.remove_task(task_data)
 
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-    ) as progress:
-        progress.add_task("Loading data...", total=None)
+        task_load = progress.add_task("Loading data...", total=None)
         data_loader = DataLoader(path_prg.joinpath(PATH_CSV_OUTPUT))
         data_loader.load_data(data_processor)
+        progress.print("listo! datos guardados :smiley: ...", style="bold cyan")
+        progress.remove_task(task_load)
+
+        progress.stop()
 
     print("\n") #saltar una linea para que se vea mejor la salida.
-    table = Table("fecha-hora", "Curtailment", title="Resultados prorrata ERV")
+    table = Table("fecha-hora", "Curtailment", title="Resultados Intercambios Andes 2A")
     for row in data_processor.show_results().iter_rows():
         table.add_row(row[0].strftime('%Y-%m-%d %H:%M'),format(row[1],".1f"))
     console.print(table)
