@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "intercambios"
-version = "1.1.0"
+version = "1.2.2"
 description = ""
 authors = ["FasoCoding <bastidas.felipe@google.com>"]
 readme = "README.md"
