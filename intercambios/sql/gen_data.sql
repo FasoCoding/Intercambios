@@ -15,4 +15,4 @@ INNER JOIN t_data_0 ON t_key.key_id = t_data_0.key_id)
 INNER JOIN t_phase_3 ON t_data_0.period_id = t_phase_3.period_id)
 INNER JOIN t_period_0 ON t_phase_3.interval_id = t_period_0.interval_id)
 INNER JOIN t_category ON t_child.category_id = t_category.category_id
-WHERE t_collection.collection_id = 1 AND t_property.property_id IN (1, 28) AND t_category.category_id IN (95, 96, 99, 100)
+WHERE t_collection.collection_id = 1 AND t_property.property_id IN ('Generation', 'Capacity Curtailed') AND t_category.category_id IN (95, 96, 99, 100)
