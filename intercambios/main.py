@@ -57,6 +57,10 @@ def main(path_prg: Annotated[str, typer.Argument(help="Path to the PRG folder")]
         task_extract = progress.add_task("Extracting data...", total=None)
         data_extractor = DataExtractor(path_prg.joinpath(PATH_ACCDB_INPUT), path_prg.joinpath(TOPOLOGY_PATH))
         data_extractor.extract_data()
+        data_extractor.topo.write_csv("topo.csv")
+        data_extractor.cmg.write_csv("cmg.csv")
+        data_extractor.gen.write_csv("gen.csv")
+        data_extractor.nodes.write_csv("nodes.csv")
         progress.print("listo! datos extraidos :smiley: ...", style="bold cyan")
         progress.remove_task(task_extract)
 
